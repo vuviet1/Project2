@@ -4,16 +4,23 @@ namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClassController extends Controller
 {
+    public $data = [];
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
-        return view('Clients/Management/Class/class');
+        $this->data['title'] = 'Danh sách các lớp học';
+        $this->data['class'] = DB::select('SELECT * FROM class
+    INNER JOIN majors ON class.id_majors = majors.id_majors
+    INNER JOIN course ON class.id_course  = course.id_course');
+//        dd($class);
+        return view('Clients/Management/Class/class', $this->data);
     }
 
     /**
@@ -22,7 +29,8 @@ class ClassController extends Controller
     public function create()
     {
         //
-        return view('Clients/Management/Class/add');
+        $this->data['title'] = 'Trang thêm thông tin lớp học';
+        return view('Clients/Management/Class/add', $this->data);
     }
 
     /**

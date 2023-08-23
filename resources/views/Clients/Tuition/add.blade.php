@@ -1,7 +1,7 @@
 @extends('Admin.Layout.index')
 
 @section('title')
-
+{{$title}}
 @endsection
 
 @section('sidebar')

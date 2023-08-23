@@ -13,54 +13,66 @@
                             <label for="inputPassword" class="col-sm-2 col-form-label">Khối lớp/Ngành học</label>
                             <select class="col form-select mb-3 form-select form-control" name="statusStudent">
                                 <option selected class="form-control">-- Khối lớp/Ngành học --</option>
-                                <option value="1" class="form-control">One</option>
-                                <option value="2" class="form-control">Two</option>
-                                <option value="3" class="form-control">Three</option>
+                                @if(!empty($majors))
+                                    @foreach($majors as $key => $item)
+                                        <option value="" class="form-control">{{$item->name_majors}}</option>
+                                    @endforeach
+                                @endif
                             </select>
                         </div>
                         <div class="mb-3 row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Khóa học/Năm học</label>
                             <select class="col form-select mb-3 form-select form-control" name="statusStudent">
                                 <option selected class="form-control">-- Khóa học/Năm học --</option>
-                                <option value="1" class="form-control">One</option>
-                                <option value="2" class="form-control">Two</option>
-                                <option value="3" class="form-control">Three</option>
+                                @if(!empty($course))
+                                    @foreach($course as $key => $item)
+                                <option value="" class="form-control">{{$item->number_course}}</option>
+                                    @endforeach
+                                @endif
                             </select>
                         </div>
                         <div class="mb-3 row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Lớp</label>
                             <select class="col form-select mb-3 form-select form-control" name="statusStudent">
                                 <option selected class="form-control">-- Lớp --</option>
-                                <option value="1" class="form-control">One</option>
-                                <option value="2" class="form-control">Two</option>
-                                <option value="3" class="form-control">Three</option>
+                                @if(!empty($class))
+                                    @foreach($class as $key => $item)
+                                        <option value="" class="form-control">{{$item->name_class}}</option>
+                                    @endforeach
+                                @endif
                             </select>
                         </div>
                         <button type="button" class="btn btn-info m-1">Refresh</button>
                         <button type="button" class="btn btn-success m-1">Search</button>
                     </div>
                 </div>
-
                 <div class="card">
                     <div class="card-body">
+                        <h5 class="card-title fw-semibold mb-4">Danh sách học sinh/sinh viên</h5>
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th scope="col">Chọn</th>
+                                <th scope="col">Số thứ tự</th>
                                 <th scope="col">Mã SV</th>
                                 <th scope="col">Họ và tên</th>
                                 <th scope="col">Điện thoại</th>
                                 <th scope="col">Lớp học</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
+                            @if(!empty($student))
+                                @foreach($student as $key => $item)
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
+                                <th scope="row">{{$key+1}}</th>
+                                <td>{{$item->student_code}}</td>
+                                <td>{{$item->name_student}}</td>
+                                <td>{{$item->phone_number}}</td>
+                                <td>{{$item->name_class}}</td>
+                                <td><a type="button" style="margin-bottom: 30px" class="btn btn-primary m-1" href="{{route('addtuition')}}">Add</a></td>
                             </tr>
+                                @endforeach
+                            @endif
                             </tbody>
                         </table>
                     </div>

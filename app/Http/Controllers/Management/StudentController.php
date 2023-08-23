@@ -4,16 +4,20 @@ namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use DB;
 
 class StudentController extends Controller
 {
+    public $data = [];
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
-        return view('Clients/Management/Student/student');
+        $this->data['title'] = 'Danh sách học sinh/sinh viên';
+        $this->data['student'] = DB::select('SELECT * FROM student INNER JOIN class ON student.id_class = class.id_class');
+        return view('Clients/Management/Student/student', $this->data);
     }
 
     /**
@@ -22,7 +26,8 @@ class StudentController extends Controller
     public function create()
     {
         //
-        return view('Clients/Management/Student/add');
+        $this->data['title'] = 'Trang thêm thông tin học sinh/sinh viên';
+        return view('Clients/Management/Student/add', $this->data);
     }
 
     /**

@@ -4,16 +4,24 @@ namespace App\Http\Controllers\Tuition;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TuitionController extends Controller
 {
+    public $data = [];
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
-        return view('Clients/Tuition/tuition');
+        $this->data['title'] = 'Quản lý học phí';
+        $this->data['majors'] = DB::select('SELECT * FROM majors');
+        $this->data['course'] = DB::select('SELECT * FROM course');
+        $this->data['class'] = DB::select('SELECT * FROM class');
+
+        $this->data['student'] = DB::select('SELECT * FROM student INNER JOIN class ON student.id_class = class.id_class');
+        return view('Clients/Tuition/tuition', $this->data);
     }
 
     /**
@@ -22,7 +30,14 @@ class TuitionController extends Controller
     public function create()
     {
         //
-        return view('Clients/Tuition/add');
+        $this->data['title'] = 'Thu phí';
+        $this->data['student'] = DB::select('SELECT * FROM student');
+        $this->data['class'] = DB::select('SELECT * FROM class');
+        $this->data['tuition'] = DB::select('SELECT * FROM tuition
+    INNER JOIN student ON tuition.id_student = student.id_student
+    INNER JOIN class ON student.id_class = class.id_class
+    ');
+        return view('Clients/Tuition/add', $this->data);
     }
 
     /**

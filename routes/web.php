@@ -38,13 +38,13 @@ Route::get('register', function (){
 // Quản lý lớp học
 Route::get('class', [ClassController::class, 'index'])->name('class');
 Route::get('addclass', [ClassController::class, 'create'])->name('addclass');
+Route::post('addclass', [ClassController::class, 'store']);
+
 
 // Quản lý học sinh
 Route::get('student', [StudentController::class, 'index'])->name('student');
 Route::get('addstudent', [StudentController::class, 'create'])->name('addstudent');
 
-// Quản lý thời khóa biểu
-Route::get('schedule', [ScheduleController::class, 'index'])->name('schedule');
 
 //Quản lý việc thu học phí
 Route::get('tuition', [TuitionController::class, 'index'])->name('tuition');

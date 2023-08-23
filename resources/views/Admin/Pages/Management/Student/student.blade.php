@@ -11,7 +11,7 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th scope="col">Chọn</th>
+                                <th scope="col">Số thứ tự</th>
                                 <th scope="col">Mã SV</th>
                                 <th scope="col">Họ và tên</th>
                                 <th scope="col">Ngày sinh</th>
@@ -21,15 +21,19 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @if(!empty($student))
+                                @foreach($student as $key => $item)
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
+                                <th scope="row">{{$key+1}}</th>
+                                <td>{{$item->student_code}}</td>
+                                <td>{{$item->name_student}}</td>
+                                <td>{{$item->birthday}}</td>
+                                <td>{{$item->phone_number}}</td>
+                                <td>{{$item->status}}</td>
+                                <td>{{$item->name_class}}</td>
                             </tr>
+                                @endforeach
+                            @endif
                             </tbody>
                         </table>
                     </div>

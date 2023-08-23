@@ -42,6 +42,14 @@
                                     <input type="text" class="form-control" placeholder="Lớp học" name="nameClass">
                                 </div>
                             </div>
+                            <div class="row g-3">
+                                <div class="col">
+                                    <label for="idClass" class="form-label">Học bổng(nếu có)</label>
+                                    <input type="text" class="form-control"
+                                           placeholder="Mã SV"
+                                           name="id">
+                                </div>
+                            </div>
                             <br>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>

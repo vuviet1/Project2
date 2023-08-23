@@ -38,14 +38,6 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{route('schedule')}}" aria-expanded="false">
-                <span>
-                  <i class="ti ti-alert-circle"></i>
-                </span>
-                        <span class="hide-menu">Thời khóa biểu</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('student')}}" aria-expanded="false">
                 <span>
                   <i class="ti ti-cards"></i>
@@ -63,14 +55,6 @@
                   <i class="ti ti-mood-happy"></i>
                 </span>
                         <span class="hide-menu">Hóa đơn</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="Pages/sample-page.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-aperture"></i>
-                </span>
-                        <span class="hide-menu">In hóa đơn</span>
                     </a>
                 </li>
             </ul>

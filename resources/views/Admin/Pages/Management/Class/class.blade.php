@@ -11,17 +11,23 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th scope="col">Chọn</th>
+                                <th scope="col">Số thứ tự</th>
                                 <th scope="col">Mã lớp</th>
-                                <th scope="col">Tên lớp</th>
+                                <th scope="col">Ngành học</th>
+                                <th scope="col">Niên khóa</th>
                             </tr>
                             </thead>
                             <tbody>
+                            @if(!empty($class))
+                                @foreach($class as $key => $item)
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
+                                <td>{{$key+1}}</td>
+                                <td>{{$item->name_class}}</td>
+                                <td>{{$item->name_majors}}</td>
+                                <td>{{$item->number_course}}</td>
                             </tr>
+                                @endforeach
+                            @endif
                             </tbody>
                         </table>
                     </div>
