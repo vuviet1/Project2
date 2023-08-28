@@ -10,9 +10,20 @@
                     <div class="card-body">
                         <h5 class="card-title fw-semibold mb-4">Lọc theo:</h5>
                         <div class="mb-3 row">
-                            <label for="inputPassword" class="col-sm-2 col-form-label">Khối lớp/Ngành học</label>
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Chương trình học</label>
                             <select class="col form-select mb-3 form-select form-control" name="statusStudent">
-                                <option selected class="form-control">-- Khối lớp/Ngành học --</option>
+                                <option selected class="form-control">-- Chương trình học --</option>
+                                @if(!empty($education_program))
+                                    @foreach($education_program as $key => $item)
+                                        <option value="" class="form-control">{{$item->training_route}}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Chuyên ngành</label>
+                            <select class="col form-select mb-3 form-select form-control" name="statusStudent">
+                                <option selected class="form-control">-- Chuyên ngành --</option>
                                 @if(!empty($majors))
                                     @foreach($majors as $key => $item)
                                         <option value="" class="form-control">{{$item->name_majors}}</option>

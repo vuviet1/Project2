@@ -36,14 +36,23 @@ Route::get('register', function (){
 })->name('register');
 
 // Quản lý lớp học
-Route::get('class', [ClassController::class, 'index'])->name('class');
-Route::get('addclass', [ClassController::class, 'create'])->name('addclass');
-Route::post('addclass', [ClassController::class, 'store']);
+Route::prefix('class')->name('class.')->group(function (){
+    Route::get('', [ClassController::class, 'index'])->name('index');
+    Route::get('addclass', [ClassController::class, 'create'])->name('add');
+    Route::post('addclass', [ClassController::class, 'store'])->name('post-add');
+
+    Route::get('editclass/{id}', [ClassController::class, 'edit'])->name('edit');
+    Route::post('editclass', [ClassController::class, 'update'])->name('post-edit');
+    Route::delete('deleteclass', [ClassController::class, 'destroy'])->name('destroy');
+});
+
+
 
 
 // Quản lý học sinh
 Route::get('student', [StudentController::class, 'index'])->name('student');
 Route::get('addstudent', [StudentController::class, 'create'])->name('addstudent');
+Route::post('addclass', [ClassController::class, 'store']);
 
 
 //Quản lý việc thu học phí

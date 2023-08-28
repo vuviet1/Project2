@@ -30,7 +30,7 @@
                     <span class="hide-menu">Quản lý</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{route('class')}}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{route('class.index')}}" aria-expanded="false">
                 <span>
                   <i class="ti ti-article"></i>
                 </span>

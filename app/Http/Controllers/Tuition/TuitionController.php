@@ -19,6 +19,7 @@ class TuitionController extends Controller
         $this->data['majors'] = DB::select('SELECT * FROM majors');
         $this->data['course'] = DB::select('SELECT * FROM course');
         $this->data['class'] = DB::select('SELECT * FROM class');
+        $this->data['education_program'] = DB::select('SELECT * FROM education_program');
 
         $this->data['student'] = DB::select('SELECT * FROM student INNER JOIN class ON student.id_class = class.id_class');
         return view('Clients/Tuition/tuition', $this->data);

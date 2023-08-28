@@ -17,5 +17,5 @@
         <div class="alert alert-danger">Dữ liệu nhập vào không hợp lệ. Vui lòng nhập lại</div>
     @endif
 
-    @include('Admin.Pages.Management.Class.add')
+    @include('Admin.Pages.Management.Class.edit')
 @endsection
