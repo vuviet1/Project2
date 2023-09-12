@@ -5,7 +5,7 @@
                 <h5 class="card-title fw-semibold mb-4">Sửa lớp</h5>
                 <div class="card">
                     <div class="card-body">
-                        <form method="post" action="">
+                        <form method="post" action="{{route('class.post-edit')}}">
                             <div class="row g-3">
                                 <div class="col">
                                     <label for="nameClass" class="form-label">Tên lớp</label>
@@ -18,10 +18,9 @@
                                     <label for="id_edu" class="form-label">Chương trình học</label>
                                     <input type="hidden" name="id_edu" >
                                     <select class="col form-select mb-3 form-select form-control" name="id_edu">
-                                        <option selected class="form-control">-- Chương trình học --</option>
                                         @if(!empty($education_programList))
                                             @foreach($education_programList as $key => $item)
-                                                <option class="form-control" value="{{$item->id_edu}}" {{($item->id_edu == $item->id_edu) ? 'selected' : ''}}>
+                                                <option class="form-control" value="{{$item->id_edu}}" {{($item->id_edu == old('id_edu')) ? 'selected' : ''}}>
                                                     {{$item->training_route}}
                                                 </option>
                                             @endforeach

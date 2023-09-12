@@ -1,4 +1,4 @@
-@extends('Admin.Layout.index')
+@extends('Layout.index')
 
 @section('title')
     {{$title}}
@@ -13,5 +13,5 @@
 @endsection
 
 @section('content')
-    @include('Admin.Pages.Management.Class.class')
+    @include('Layout.Pages.Tuition.add')
 @endsection

@@ -18,7 +18,7 @@
 
     <!-- Sidebar Start -->
     @section('sidebar')
-        @include('Admin.Layout.Sidebar.sidebar')
+        @include('Layout.Sidebar.sidebar')
     @show
     <!--  Sidebar End -->
 
@@ -26,7 +26,7 @@
     <div class="body-wrapper">
         {{--      <!--  Header Start -->--}}
         @section('mainheader')
-            @include('Admin.Layout.MainHeader.mainheader')
+            @include('Layout.MainHeader.mainheader')
         @show()
         {{--      <!--  Header End -->--}}
 

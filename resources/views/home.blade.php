@@ -1,7 +1,7 @@
-@extends('Admin.Layout.index')
+@extends('Layout.index')
 
 @section('title')
-    {{$title}}
+
 @endsection
 
 @section('sidebar')
@@ -13,5 +13,6 @@
 @endsection
 
 @section('content')
-    @include('Admin.Pages.Management.Student.add')
+    @include('Layout.Pages.main')
+
 @endsection

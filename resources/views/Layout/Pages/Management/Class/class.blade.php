@@ -30,7 +30,7 @@
                                 <td>{{$item->name_majors}}</td>
                                 <td>{{$item->number_course}}</td>
                                 <td><a class="btn btn-warning m-1" href="{{route('class.edit',['id'=>$item->id_class])}}">Sửa</a>
-                                    <a class="btn btn-danger m-1" href="{{route('class.destroy')}}">Xóa</a>
+                                    <a onclick="return confirm('Ban co chac chan muon xoa hay khong?')" class="btn btn-danger m-1" href="{{route('class.destroy',['id'=>$item->id_class])}}">Xóa</a>
                                 </td>
                             </tr>
                                 @endforeach

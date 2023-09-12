@@ -1,4 +1,4 @@
-@extends('Admin.Layout.index')
+@extends('Layout.index')
 
 @section('title')
     {{$title}}
@@ -17,5 +17,5 @@
         <div class="alert alert-danger">Dữ liệu nhập vào không hợp lệ. Vui lòng nhập lại</div>
     @endif
 
-    @include('Admin.Pages.Management.Class.add')
+    @include('Layout.Pages.Management.Class.add')
 @endsection

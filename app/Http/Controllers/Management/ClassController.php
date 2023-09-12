@@ -82,7 +82,7 @@ class ClassController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request,int $id=0)
     {
         //
         $this->data['title'] = 'Trang sửa thông tin lớp học';
@@ -93,6 +93,7 @@ class ClassController extends Controller
         if (!empty($id)){
             $this->data['classDetals'] = $this->class->getDetails($id);
             if (!empty($this->data['classDetals'][0])){
+                $request->session()->put('id', $id);
                 $this->data['classDetals'] = $this->data['classDetals'][0];
             }else{
                 return redirect()->route('class.index')->with('msg', 'Thông tin lớp không tồn tại');
@@ -108,16 +109,82 @@ class ClassController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, int $id = 0)
     {
+        $id = session('id');
+        if (empty($id)){
+            return back()->with('msg', 'Lien ket khong ton tai');
+        }
         //
+        $request->validate([
+            'nameClass' => 'required|min:4',
+            'original_fee' => 'required|numeric'
+//            Xet truong hop da ton tai
+//        'original_fee' => 'required|numeric|unique:class'
+        ], [
+            'nameClass.required' => 'Tên lớp bắt buộc phải nhập',
+            'nameClass.min' => 'Tên lớp phải từ :min ký tự trở nên',
+            'original_fee.required' => 'Số tiền bắt buộc phải nhập',
+            'original_fee.number' => 'Số tiền phải đúng định dạng'
+//            'original_fee.unique' => 'Da ton tai tren he thong',
+        ]);
+
+        $dataUpdate = [
+            $request->nameClass,
+            $request->original_fee,
+            $request->id_edu,
+            $request->id_majors,
+            $request->id_course,
+            date('Y-m-d H:i:s')
+        ];
+        $this->data['classUpdate'] = $this->class->updateClass($dataUpdate, $id);
+
+        return redirect()->route('class.index')->with('msg','Cap nhat thanh cong');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $id=0)
     {
-        //
+        return $id;
+//        if (!empty($id)){
+//            $this->data['classDetals'] = $this->class->getDetails($id);
+//            if (!empty($this->data['classDetals'][0])){
+//                $this->data['classDelete'] = $this->class->deleteClass($id);
+//                if ($this->data['classDelete']){
+//                    $msg = 'Xoa lop thanh cong';
+////                    return redirect()->route('class.index');
+//                }else{
+//                    $msg = 'Ban khong the xoa lop nay. Vui long thu lai sau';
+//                }
+//            }else{
+//                $msg = 'Thông tin lớp không tồn tại';
+//            }
+//        }else{
+//            $msg = 'Liên kết không tồn tại';
+//        }
+//        return redirect()->route('class.index')->with('msg', $msg);
+    }
+
+    public function delete($id =0){
+        if (!empty($id)){
+            $this->data['classDetals'] = $this->class->getDetails($id);
+            if (!empty($this->data['classDetals'][0])){
+                $this->data['classDelete'] = $this->class->deleteClass($id);
+                if ($this->data['classDelete']){
+                    $msg = 'Xoa lop thanh cong';
+//                    return redirect()->route('class.index');
+                }else{
+                    $msg = 'Ban khong the xoa lop nay. Vui long thu lai sau';
+                }
+            }else{
+                $msg = 'Thông tin lớp không tồn tại';
+            }
+        }else{
+            $msg = 'Liên kết không tồn tại';
+        }
+        return redirect()->route('class.index')->with('msg', $msg);
     }
 }

@@ -38,12 +38,13 @@ Route::get('register', function (){
 // Quản lý lớp học
 Route::prefix('class')->name('class.')->group(function (){
     Route::get('', [ClassController::class, 'index'])->name('index');
-    Route::get('addclass', [ClassController::class, 'create'])->name('add');
-    Route::post('addclass', [ClassController::class, 'store'])->name('post-add');
+    Route::get('add', [ClassController::class, 'create'])->name('add');
+    Route::post('add', [ClassController::class, 'store'])->name('post-add');
 
-    Route::get('editclass/{id}', [ClassController::class, 'edit'])->name('edit');
-    Route::post('editclass', [ClassController::class, 'update'])->name('post-edit');
-    Route::delete('deleteclass', [ClassController::class, 'destroy'])->name('destroy');
+    Route::get('edit/{id}', [ClassController::class, 'edit'])->name('edit');
+    Route::post('update', [ClassController::class, 'update'])->name('post-edit');
+//    Route::delete('destroy/{id}', [ClassController::class, 'destroy'])->name('destroy');
+    Route::get('delete/{id}', [ClassController::class, 'delete'])->name('destroy');
 });
 
 
